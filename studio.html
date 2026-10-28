@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#9775d8">
+  <title>Studio créatif — Photo Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/konva/9.3.6/konva.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.js"></script>
+</head>
+<body>
+  <div class="studio">
+
+    <!-- Colonne gauche : slides -->
+    <aside class="studio-colonne">
+      <div class="studio-colonne-entete">
+        <span>Slides</span>
+        <button class="btn btn-petit btn-fantome" id="btn-ajouter-slide" title="Ajouter une slide">+</button>
+      </div>
+      <div class="studio-colonne-corps" id="liste-slides"></div>
+      <div style="padding:10px;border-top:1px solid var(--bordure);display:flex;flex-direction:column;gap:4px">
+        <a href="index.html" class="btn btn-petit btn-fantome" style="width:100%">🖼️ My Photos</a>
+        <a href="posts.html" class="btn btn-petit btn-fantome" style="width:100%">📮 My Posts</a>
+      </div>
+    </aside>
+
+    <!-- Centre : barre d'outils et scène -->
+    <section class="studio-centre">
+      <div class="studio-barre">
+        <button class="btn btn-petit" id="btn-photos">+ Photos</button>
+        <button class="btn btn-petit" id="btn-texte">+ Texte</button>
+        <button class="btn btn-petit" id="btn-forme">+ Forme</button>
+
+        <span class="studio-separateur"></span>
+
+        <button class="btn btn-icone btn-fantome" id="btn-annuler" title="Annuler (Ctrl+Z)">↶</button>
+        <button class="btn btn-icone btn-fantome" id="btn-retablir" title="Rétablir (Ctrl+Maj+Z)">↷</button>
+
+        <span class="studio-separateur"></span>
+
+        <select class="champ btn-petit" id="format" style="width:auto;padding:6px 10px">
+          <option value="1080x1350">Portrait 4:5</option>
+          <option value="1080x1080">Carré 1:1</option>
+          <option value="1080x1920">Story 9:16</option>
+        </select>
+
+        <label class="rangee" style="gap:6px;font-size:13px;cursor:pointer">
+          <input type="checkbox" id="mode-panorama"> Panorama continu
+        </label>
+
+        <span class="studio-separateur"></span>
+
+        <button class="btn btn-petit" id="btn-apercu">Aperçu</button>
+        <button class="btn btn-petit btn-primaire" id="btn-exporter">Exporter</button>
+
+        <span class="studio-etat" id="etat-sauvegarde">Enregistré</span>
+      </div>
+
+      <div class="studio-scene" id="scene-hote">
+        <div id="scene"></div>
+      </div>
+    </section>
+
+    <!-- Colonne droite : calques et réglages -->
+    <aside class="studio-colonne droite">
+      <div class="studio-colonne-entete">
+        <input class="champ btn-petit" id="titre-projet" style="padding:5px 9px;font-size:13px"
+               aria-label="Titre du post">
+      </div>
+      <div class="studio-colonne-corps">
+
+        <div class="reglage">
+          <label class="etiquette">Modèles</label>
+          <select class="champ" id="templates">
+            <option value="">Partir d'un modèle…</option>
+            <option value="minimaliste">Carrousel minimaliste</option>
+            <option value="photojournal">Carrousel photojournal</option>
+            <option value="voyage">Carrousel de voyage</option>
+            <option value="esthetique">Carrousel esthétique</option>
+            <option value="tenues">Carrousel de tenues</option>
+            <option value="souvenirs">Carrousel de souvenirs</option>
+            <option value="collage">Collage de photos</option>
+            <option value="panorama">Composition panoramique</option>
+          </select>
+        </div>
+
+        <div class="reglage">
+          <label class="etiquette">Fond de la slide</label>
+          <div class="reglage-ligne">
+            <input type="color" id="fond-couleur" value="#ffffff">
+            <button class="btn btn-petit" id="btn-fond-palette">Couleur de la photo</button>
+          </div>
+        </div>
+
+        <div class="reglage">
+          <label class="etiquette">Calques</label>
+          <div id="liste-calques"></div>
+        </div>
+
+        <div id="proprietes"></div>
+
+      </div>
+    </aside>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="storage.js"></script>
+  <script src="media.js"></script>
+  <script src="ui.js"></script>
+  <script src="studio.js"></script>
+</body>
+</html>

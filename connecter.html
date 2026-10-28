@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#9775d8">
+  <title>Connecter mes photos — Photo Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="nav" aria-label="Navigation principale"></nav>
+
+    <main class="contenu" style="max-width:720px">
+      <div class="page-entete">
+        <div>
+          <h1>Connecter mes photos</h1>
+          <p>Choisis comment Photo Studio accède à tes photos. Rien ne quitte ton appareil.</p>
+        </div>
+      </div>
+
+      <div class="pile">
+
+        <!-- Autoriser un dossier -->
+        <section class="carte" id="carte-dossier">
+          <div class="rangee" style="align-items:flex-start;gap:16px;flex-wrap:nowrap">
+            <span style="font-size:32px;line-height:1">📂</span>
+            <div style="flex:1;min-width:0">
+              <h2>Autoriser un dossier de photos</h2>
+              <p class="doux" style="margin-top:6px">
+                Tu choisis un dossier une seule fois — ta pellicule, un dossier de voyage,
+                ton dossier Images. Photo Studio pourra le relire quand tu veux, y compris
+                les photos que tu y ajouteras plus tard.
+              </p>
+              <div id="dossier-etat" class="encart info" hidden style="margin:12px 0"></div>
+              <div class="rangee" style="margin-top:12px">
+                <button class="btn btn-primaire" id="btn-dossier">Choisir un dossier</button>
+                <button class="btn" id="btn-resync" hidden>Chercher les nouvelles photos</button>
+                <button class="btn btn-fantome" id="btn-oublier" hidden>Oublier ce dossier</button>
+              </div>
+              <p class="pale" id="dossier-indispo" hidden style="margin-top:12px"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Choisir des photos -->
+        <section class="carte">
+          <div class="rangee" style="align-items:flex-start;gap:16px;flex-wrap:nowrap">
+            <span style="font-size:32px;line-height:1">🖼️</span>
+            <div style="flex:1;min-width:0">
+              <h2>Choisir des photos</h2>
+              <p class="doux" style="margin-top:6px">
+                Tu sélectionnes les photos une par une ou par paquets.
+                Sur iPhone et Android, c'est le sélecteur de photos de ton système qui s'ouvre —
+                tes photos iCloud sont téléchargées automatiquement au passage.
+              </p>
+              <div class="rangee" style="margin-top:12px">
+                <button class="btn btn-primaire" id="btn-choisir">Choisir des photos</button>
+                <input type="file" id="fichiers" accept="image/*,video/*" multiple hidden>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Progression -->
+        <div id="progression" class="progression" hidden>
+          <span id="progression-texte">Import en cours…</span>
+          <div class="jauge"><div class="jauge-barre" id="progression-barre" style="width:0%"></div></div>
+          <button class="btn btn-petit btn-fantome" id="btn-stop">Arrêter</button>
+        </div>
+
+        <!-- Ce qui n'est pas possible, et pourquoi -->
+        <section class="panneau">
+          <div class="panneau-entete">Pourquoi pas « autoriser toutes les photos » ?</div>
+          <div class="panneau-corps pile">
+            <p class="doux" style="margin:0">
+              Sur iPhone, une application installée peut demander l'accès à toute ta photothèque.
+              Un site web, non : aucun navigateur ne propose cette autorisation, pour éviter
+              qu'un site visité au hasard puisse lire tes photos. Autoriser un dossier est
+              ce qui s'en rapproche le plus, et c'est toi qui choisis lequel.
+            </p>
+
+            <div class="rangee" style="justify-content:space-between;gap:12px">
+              <div style="flex:1;min-width:0">
+                <strong>Google Photos</strong>
+                <p class="pale" style="margin:3px 0 0">
+                  Possible via le sélecteur officiel de Google, mais les photos doivent être
+                  copiées ici : Google ne donne plus de lien permanent depuis mars 2025.
+                </p>
+              </div>
+              <span class="badge badge-a-preparer">Phase 2</span>
+            </div>
+
+            <div class="rangee" style="justify-content:space-between;gap:12px">
+              <div style="flex:1;min-width:0">
+                <strong>Apple Photos / iCloud</strong>
+                <p class="pale" style="margin:3px 0 0">
+                  Aucune API web ne permet de parcourir une photothèque iCloud.
+                  Sur iPhone, passe par « Choisir des photos » : c'est la même pellicule.
+                </p>
+              </div>
+              <span class="badge badge-a-preparer">Hors du web</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="storage.js"></script>
+  <script src="media.js"></script>
+  <script src="ui.js"></script>
+  <script src="connecter.js"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#9775d8">
+  <title>My Posts — Photo Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="nav" aria-label="Navigation principale"></nav>
+
+    <main class="contenu">
+      <div class="page-entete">
+        <div>
+          <h1>My Posts</h1>
+          <p id="resume">Chargement…</p>
+        </div>
+        <div class="barre-actions">
+          <button class="btn btn-primaire" id="btn-nouveau">Nouveau post</button>
+        </div>
+      </div>
+
+      <div class="filtres">
+        <button class="puce actif" data-statut="">Tous</button>
+        <button class="puce" data-statut="to-prepare">À préparer</button>
+        <button class="puce" data-statut="in-progress">En cours</button>
+        <button class="puce" data-statut="ready">Prêt à publier</button>
+        <button class="puce" data-statut="published">Publié</button>
+      </div>
+
+      <div id="cartes" class="cartes"></div>
+
+      <div id="vide" class="vide" hidden>
+        <span class="vide-emoji">📮</span>
+        <h3>Aucun post pour l'instant</h3>
+        <p>Crée un post depuis le studio, depuis une collection,
+           ou à partir d'une proposition.</p>
+        <button class="btn btn-primaire" onclick="document.getElementById('btn-nouveau').click()">
+          Créer mon premier post
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="storage.js"></script>
+  <script src="media.js"></script>
+  <script src="ui.js"></script>
+  <script src="posts.js"></script>
+</body>
+</html>

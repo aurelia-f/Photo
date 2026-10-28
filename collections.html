@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#9775d8">
+  <title>Collections — Photo Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="nav" aria-label="Navigation principale"></nav>
+
+    <main class="contenu">
+      <div class="page-entete">
+        <div>
+          <h1>Collections</h1>
+          <p>Regroupe tes photos par voyage, thème ou idée de post. Une photo peut appartenir à plusieurs collections.</p>
+        </div>
+        <div class="barre-actions">
+          <button class="btn btn-primaire" id="btn-nouvelle">Nouvelle collection</button>
+        </div>
+      </div>
+
+      <!-- Liste des collections -->
+      <section id="vue-liste">
+        <div id="cartes" class="cartes"></div>
+        <div id="vide" class="vide" hidden>
+          <span class="vide-emoji">🗂️</span>
+          <h3>Aucune collection</h3>
+          <p>Crée une collection pour rassembler les photos d'un voyage,
+             d'une ambiance ou d'un post à venir.</p>
+          <button class="btn btn-primaire" onclick="document.getElementById('btn-nouvelle').click()">
+            Créer ma première collection
+          </button>
+        </div>
+      </section>
+
+      <!-- Détail d'une collection -->
+      <section id="vue-detail" hidden>
+        <div class="page-entete">
+          <div>
+            <button class="btn btn-petit btn-fantome" id="btn-retour">← Toutes les collections</button>
+            <h2 id="detail-titre" style="margin-top:8px"></h2>
+            <p class="doux" id="detail-meta"></p>
+          </div>
+          <div class="barre-actions">
+            <button class="btn btn-petit" id="btn-renommer">Renommer</button>
+            <button class="btn btn-petit" id="btn-ajouter-photos">Ajouter des photos</button>
+            <button class="btn btn-petit btn-primaire" id="btn-vers-studio">Envoyer au studio</button>
+            <button class="btn btn-petit btn-danger" id="btn-supprimer-col">Supprimer</button>
+          </div>
+        </div>
+        <div id="detail-grille" class="grille"></div>
+        <div id="detail-vide" class="vide" hidden>
+          <span class="vide-emoji">📭</span>
+          <h3>Cette collection est vide</h3>
+          <p>Ajoute des photos depuis la photothèque ou avec le bouton ci-dessus.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="storage.js"></script>
+  <script src="media.js"></script>
+  <script src="ui.js"></script>
+  <script src="collections.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#9775d8">
+  <title>Propositions — Photo Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="nav" aria-label="Navigation principale"></nav>
+
+    <main class="contenu">
+      <div class="page-entete">
+        <div>
+          <h1>Ma proposition de post</h1>
+          <p>Des idées de carrousels à partir de tes photos : dates, catégories,
+             couleurs et favoris. Tout est calculé sur ton appareil.</p>
+        </div>
+        <div class="barre-actions">
+          <select class="champ" id="nombre-photos" style="width:auto" aria-label="Nombre de photos">
+            <option value="5">5 photos</option>
+            <option value="8" selected>8 photos</option>
+            <option value="10">10 photos</option>
+            <option value="12">12 photos</option>
+          </select>
+          <button class="btn btn-primaire" id="btn-regenerer">Proposer autre chose</button>
+        </div>
+      </div>
+
+      <div class="encart info" style="margin-bottom:20px">
+        Ces regroupements sont des hypothèses, pas des certitudes.
+        Tu gardes le dernier mot sur la sélection, et rien n'est jamais publié automatiquement.
+      </div>
+
+      <div id="propositions" class="pile"></div>
+
+      <div id="vide" class="vide" hidden>
+        <span class="vide-emoji">💡</span>
+        <h3>Pas encore assez de photos</h3>
+        <p>Importe au moins quelques photos pour que des idées de carrousels
+           puissent émerger.</p>
+        <a class="btn btn-primaire" href="index.html">Aller à la photothèque</a>
+      </div>
+    </main>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="storage.js"></script>
+  <script src="media.js"></script>
+  <script src="ui.js"></script>
+  <script src="propositions.js"></script>
+</body>
+</html>

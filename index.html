@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#9775d8">
+  <title>My Photos — Photo Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="nav" aria-label="Navigation principale"></nav>
+
+    <main class="contenu">
+      <div class="page-entete">
+        <div>
+          <h1>My Photos</h1>
+          <p id="resume">Chargement…</p>
+        </div>
+        <div class="barre-actions">
+          <button class="btn" id="btn-doublons">Doublons</button>
+          <a class="btn" href="connecter.html">📂 Connecter mes photos</a>
+          <button class="btn btn-primaire" id="btn-importer">Importer des photos</button>
+          <input type="file" id="fichiers" accept="image/*,video/*" multiple hidden>
+        </div>
+      </div>
+
+      <div id="progression" class="progression" hidden>
+        <span id="progression-texte">Import en cours…</span>
+        <div class="jauge"><div class="jauge-barre" id="progression-barre" style="width:0%"></div></div>
+        <button class="btn btn-petit btn-fantome" id="btn-stop-import">Arrêter</button>
+      </div>
+
+      <div class="filtres">
+        <input type="search" class="champ champ-recherche" id="recherche"
+               placeholder="Rechercher un nom, une catégorie…" aria-label="Rechercher">
+
+        <select class="champ" id="filtre-type" style="width:auto" aria-label="Type de média">
+          <option value="">Tous les médias</option>
+          <option value="image">Photos</option>
+          <option value="video">Vidéos</option>
+        </select>
+
+        <select class="champ" id="filtre-categorie" style="width:auto" aria-label="Catégorie">
+          <option value="">Toutes les catégories</option>
+        </select>
+
+        <select class="champ" id="filtre-periode" style="width:auto" aria-label="Période">
+          <option value="">Toutes les dates</option>
+          <option value="7">7 derniers jours</option>
+          <option value="30">30 derniers jours</option>
+          <option value="365">Cette année</option>
+        </select>
+
+        <select class="champ" id="filtre-usage" style="width:auto" aria-label="Statut d'utilisation">
+          <option value="">Utilisées ou non</option>
+          <option value="jamais">Jamais publiées</option>
+          <option value="deja">Déjà publiées</option>
+        </select>
+
+        <button class="puce" id="filtre-favoris">★ Favoris</button>
+        <button class="btn btn-petit btn-fantome" id="btn-reinit" hidden>Réinitialiser</button>
+      </div>
+
+      <div id="grille" class="grille"></div>
+      <div id="vide" class="vide" hidden></div>
+    </main>
+  </div>
+
+  <div class="barre-selection" id="barre-selection">
+    <span class="barre-selection-compte" id="compte-selection">0 sélectionnée</span>
+    <button class="btn btn-petit" id="sel-favori">★ Favori</button>
+    <button class="btn btn-petit" id="sel-categorie">Catégoriser</button>
+    <button class="btn btn-petit" id="sel-collection">Collection</button>
+    <button class="btn btn-petit btn-primaire" id="sel-studio">Ouvrir dans le studio</button>
+    <button class="btn btn-petit btn-danger" id="sel-supprimer">Supprimer</button>
+    <button class="btn btn-petit btn-fantome" id="sel-annuler">Annuler</button>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="storage.js"></script>
+  <script src="media.js"></script>
+  <script src="ui.js"></script>
+  <script src="photos.js"></script>
+</body>
+</html>

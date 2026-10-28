@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#9775d8">
+  <title>Paramètres — Photo Studio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.js"></script>
+</head>
+<body>
+  <div class="app">
+    <nav class="nav" aria-label="Navigation principale"></nav>
+
+    <main class="contenu" style="max-width:780px">
+      <div class="page-entete">
+        <div>
+          <h1>Paramètres</h1>
+          <p>Stockage, sauvegarde, catégories et connexions.</p>
+        </div>
+      </div>
+
+      <div class="pile">
+
+        <!-- Avertissement stockage local -->
+        <section class="encart">
+          <strong>Tes photos vivent dans ce navigateur, sur cet appareil.</strong><br>
+          Ce n'est pas une sauvegarde : vider les données du site les effacerait.
+          Exporte régulièrement une archive, et installe l'application sur ton écran
+          d'accueil pour réduire le risque que le navigateur fasse le ménage tout seul.
+        </section>
+
+        <!-- Stockage -->
+        <section class="panneau">
+          <div class="panneau-entete">Espace utilisé</div>
+          <div class="panneau-corps">
+            <div class="rangee" style="justify-content:space-between;margin-bottom:10px">
+              <span id="stockage-texte" class="doux">Calcul en cours…</span>
+              <span id="stockage-pourcent" class="pale"></span>
+            </div>
+            <div class="jauge"><div class="jauge-barre" id="stockage-barre" style="width:0%"></div></div>
+            <p class="pale" id="stockage-detail" style="margin-top:12px"></p>
+            <button class="btn btn-petit" id="btn-persister">Protéger contre l'effacement automatique</button>
+          </div>
+        </section>
+
+        <!-- Sauvegarde -->
+        <section class="panneau">
+          <div class="panneau-entete">Sauvegarde</div>
+          <div class="panneau-corps">
+            <p class="doux">
+              L'archive contient toutes tes photos et toutes tes métadonnées :
+              catégories, collections et projets de post. Elle se réimporte entièrement.
+            </p>
+            <div class="rangee">
+              <button class="btn btn-primaire" id="btn-exporter-tout">Exporter une archive</button>
+              <button class="btn" id="btn-importer-archive">Restaurer une archive</button>
+              <input type="file" id="fichier-archive" accept=".zip" hidden>
+            </div>
+            <p class="pale" id="sauvegarde-etat" style="margin-top:12px"></p>
+          </div>
+        </section>
+
+        <!-- Connecter mes photos -->
+        <section class="panneau">
+          <div class="panneau-entete">Connecter mes photos</div>
+          <div class="panneau-corps pile">
+            <div class="rangee" style="justify-content:space-between">
+              <div>
+                <strong>Importer depuis mon appareil</strong>
+                <p class="pale" style="margin:3px 0 0">
+                  Sur iPhone et Android, le sélecteur de photos du système s'ouvre directement.
+                </p>
+              </div>
+              <a class="btn btn-petit btn-primaire" href="connecter.html">Ouvrir</a>
+            </div>
+
+            <div class="rangee" style="justify-content:space-between">
+              <div>
+                <strong>Google Photos</strong>
+                <p class="pale" style="margin:3px 0 0;max-width:46ch">
+                  Nécessite un projet Google Cloud et le sélecteur officiel.
+                  Les photos choisies seront copiées ici : Google ne donne pas
+                  de lien permanent, les URLs expirent au bout d'une heure.
+                </p>
+              </div>
+              <span class="badge badge-a-preparer">Phase 2</span>
+            </div>
+
+            <div class="rangee" style="justify-content:space-between">
+              <div>
+                <strong>Apple Photos / iCloud</strong>
+                <p class="pale" style="margin:3px 0 0;max-width:46ch">
+                  Aucune API web ne permet de parcourir une photothèque iCloud.
+                  Sur iPhone, passe par « Importer depuis mon appareil » :
+                  le sélecteur d'iOS télécharge les photos iCloud automatiquement.
+                </p>
+              </div>
+              <span class="badge badge-a-preparer">Hors du web</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Catégories -->
+        <section class="panneau">
+          <div class="panneau-entete">Catégories</div>
+          <div class="panneau-corps">
+            <div class="rangee" id="liste-categories" style="gap:6px;margin-bottom:14px"></div>
+            <div class="rangee">
+              <input class="champ" id="nouvelle-categorie" placeholder="Nom de la catégorie" style="max-width:260px">
+              <button class="btn" id="btn-ajouter-categorie">Ajouter</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Analyse automatique -->
+        <section class="panneau">
+          <div class="panneau-entete">Analyse automatique des photos</div>
+          <div class="panneau-corps">
+            <p class="doux">
+              Les couleurs dominantes et l'ambiance sont déjà calculées à l'import, sans modèle
+              et sans réseau. La classification par IA locale arrive en phase 3 :
+              elle demandera un téléchargement unique d'environ 50 Mo.
+            </p>
+            <label class="etiquette" for="mode-ia">Quand analyser</label>
+            <select class="champ" id="mode-ia" style="max-width:320px">
+              <option value="off">Désactivé</option>
+              <option value="nouvelles" selected>Nouvelles photos seulement</option>
+              <option value="favoris">Favoris seulement</option>
+              <option value="tout">Toute la photothèque</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Zone sensible -->
+        <section class="panneau" style="border-color:#f0d6da">
+          <div class="panneau-entete" style="background:var(--danger-bg);color:#9c4f5b">
+            Effacer mes données
+          </div>
+          <div class="panneau-corps">
+            <p class="doux">
+              Supprime définitivement toutes les photos, collections et projets de cet appareil.
+              Exporte une archive avant, si tu veux pouvoir revenir en arrière.
+            </p>
+            <button class="btn btn-danger" id="btn-tout-effacer">Tout effacer</button>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="db.js"></script>
+  <script src="storage.js"></script>
+  <script src="media.js"></script>
+  <script src="ui.js"></script>
+  <script src="parametres.js"></script>
+</body>
+</html>
